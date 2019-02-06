@@ -1,0 +1,93 @@
+@import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
+body {
+    font-family: arial;
+}
+
+.allergi {
+    font-weight: bold;
+    color: #FF7F50
+}
+#wrapper {
+     display: grid;
+     grid-gap: 5px;
+     grid-template-columns: 450px 450px 450px;
+     background-color: #000000;
+     color: #FFFFFF;
+     border: 5px solid #FF7F50;
+     padding-left: 50px;
+
+ }
+
+ #box {
+     background-color: #000000;
+     color: #fff;
+     border-radius: 5px;
+     padding: 20px;
+     font-size: 150%;
+
+ }
+ #orderb {
+   color: #FFFFFF;
+ }
+
+
+ .a {
+     grid-column: 1;
+ }
+ .b {
+     grid-column: 2;
+
+ }
+ .c {
+     grid-column: 3;
+
+ }
+.allergi {
+  color: #FF7F50;
+}
+
+
+#titel {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 0px;
+}
+#titel img {
+  height: 300px;
+  width: 100%;
+  opacity: 0.2;
+
+}
+#titel h2 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#titel h1{
+  position: absolute;
+  padding-left: 550px;
+  padding-top: 100px;
+}
+
+button:hover {
+    background-color: green;
+    cursor:pointer;
+}
+table {
+  width: 100%;
+}
+td {
+  padding: 1px 70px;
+}
+#kundinfo {
+  background-color: coral;
+  border: 5px outset #000000;
+  padding-left: 70px;
+  padding-right:1345px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+@media only screen and (max-width:400px) {
+  #wrapper {
+    display: inline;
+  }
+}

@@ -1,9 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DELI-VERY</title>
+        <title>Page title shown in window title</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <script src="https://vuejs.org/js/vue.js"></script>
+        <script src="js/js_script.js" defer></script>
+        <script src="js/menu.js"></script>
+        <script src="js/vue_script.js" defer></script>
+
+
     </head>
+
+    <section id = "titel">
     <body>
-        <h1>Hello World!!!</h1>
-    </body>
+      <main>
+      <h1> Välkommen till burgeronline </h1>
+      <h2> <img src="https://d2yk4sockbjvo.cloudfront.net/wp-content/uploads/2015/02/umami-burger-location-broadway-new-2.jpg"></h2>
+    </section>
+
+    <section id = "allt">
+      <div id = "wrapper">
+
+        <div v-for = "meny in menues">
+
+          <h2> {{meny.name}} </h2>
+          <p>
+            <image :src = "meny.img" width = "400">
+            </p>
+          <li v-if= "meny.laktos"> <span class = "allergi"> Laktos</span></li>
+
+          <li v-if= "meny.gluten"> <span class = "allergi"> Gluten</span> </li>
+
+          <li> {{meny.kcal}} </li>
+        <input type = "checkbox" name = "ordered" :id = "meny.name">
+        </div>
+      </div>
+
+
+
+
+
+<section id = "kundinfo">
+    <h2> Kundinfo </h2>
+    <form>
+    <label for="Namn">Namn</label><br>
+    <p>
+    <input v-model="namn" type="text" id="Name" name="fn" required="required" placeholder="För och efternamn">
+    </p>
+    <label for="Email">Email</label><br>
+    <p>
+        <input v-model="email"type="email" id="email" name="em" required="required" placeholder="E-mail address">
+    </p>
+    <label for="Gatuadress">Gatuadress</label><br>
+    <p>
+        <input v-model="gatuadress" type="Address" id="gaddress" name="gaddress" required="required" placeholder="Gatuadress">
+    </p>
+    <label for="Husnummer">Husnummer</label><br>
+    <p>
+        <input v-model="nummer" type= Number id="nummer" name="nummer" required="required" placeholder="Husnummer">
+    </p>
+
+    <h2> Beställ </h2>
+    <p>
+    <label for="Betalmetod">Betalmetod</label><br>
+    <select v-model= "betalmetod" id="Betalmetod" name="Betalmetod">
+        <option>Klarna</option>
+        <option>Mastercard</option>
+        <option>Visa</option>
+        <option>Trustly</option>
+        <option>Paypal</option>
+    </select>
+    </p>
+
+    <h2> Kön </h2>
+    <label for="Man">Man</label><br>
+    <p>
+    <input v-model = "gender" type="radio" value = "Man" id="Man" name = "kön"checked="checked">
+    </p>
+    <label for="Kvinna">Kvinna</label><br>
+    <p>
+        <input v-model = "gender" type="radio" value = "Kvinna" id="Kvinna" name="kön" >
+    </p>
+    <label for="Hen">Hen</label><br>
+    <p>
+        <input v-model = "gender" type="radio" value = "Hen"id="Hen" name="kön" >
+    </p>
+  <button v-on:click.prevent ="order()" onclick="printOrder()" type="submit"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJSvQpy9PqvXsQAScztbIuj-qj94-WdIvyYfk_CUUbQAu-TUiPCg" width = "50" > Beställ </button>
+  <div id = "orderinfo">
+  <div v-if = "clicked" id = "orderb">
+  <h2> Orderbekräftelse (with vue)</h2>
+  <h4> Burgare: {{burgers}} </h4>
+   <p>Namn: {{namn}}</p>
+   <p>Email:{{email}}</p>
+   <p>Gatuaddress: {{gatuadress}}</p>
+   <p>Nummer:{{nummer}}</p>
+   <p>Betalmetod: {{betalmetod}}</p>
+   <p>Kön: {{gender}}</p>
+</div>
+</div>
+<div id = "jsbekr">
+</div>
+</form>
+
+  </section>
+
+ </main>
+</section>
+        </body>
+
+        <footer id = "fot">
+          <p> Låtsasburgare AB </p>
+        </footer>
+
+
 </html>
