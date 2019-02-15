@@ -17,7 +17,8 @@ var meny6 = new MenuItem("liten", 1000, true, false, "https://images.ricardocuis
 
 var menues = [ meny1, meny2, meny3, meny4, meny5, meny6];
 */
-
+'use strict';
+var socket = io();
 
 new Vue({
   el: '#allt',
@@ -31,16 +32,52 @@ new Vue({
     gender: '',
     clicked: false,
     burgers: '',
+    orders: {},
+    orderId: 0,
+    details: {x: -1, y: -1},
+    orderItems: [],
 
   },
   methods: {
     order:function() {
       this.burgers = "" + burgerOrder();
+      this.orderItems = burgerOrder();
       this.clicked = true;
-    }
-  }
+      this.addOrder();
 
-})
+  },
+  getNext: function () {
+  var lastOrder = Object.keys(this.orders).reduce(function (last, next) {
+    return Math.max(last, next);
+  }, 0);
+  return lastOrder + 1;
+},
+displayOrder: function (event) {
+  var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                y: event.currentTarget.getBoundingClientRect().top};
+  this.details.x = event.clientX - 10 - offset.x;
+  this.details.y = event.clientY - 10 - offset.y;
+  this.orderId += 1;
+  this.getNext();
+  console.log(this.details.x, this.details.y);
+},
+addOrder: function (event) {
+  socket.emit("addOrder", { orderId: this.orderId,
+                            details: this.details,
+                            orderItems: this.orderItems,
+                            name: this.namn,
+                            email: this.email,
+                            paymentMethod: this.betalmetod,
+                            gender: this.gender,
+                          });
+}
+}
+});
+
+
+
+
+
 /*
 new Vue({
   el: '#kundinfo',

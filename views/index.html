@@ -3,11 +3,18 @@
     <head>
         <title>Page title shown in window title</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <script src="https://vuejs.org/js/vue.js"></script>
-        <script src="js/js_script.js" defer></script>
-        <script src="js/menu.js"></script>
-        <script src="js/vue_script.js" defer></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="css/deli-very.css">
+       <script src="/vue/vue.js" defer></script>
+       <script src="/socket.io/socket.io.js" defer></script>
+       <script src="js/deli-very.js" defer></script>
+
+       <link rel="stylesheet" type="text/css" href="css/style.css">
+       <script src="https://vuejs.org/js/vue.js"></script>
+       <script src="js/js_script.js" defer></script>
+       <script src="js/menu.js"></script>
+       <script src="js/vue_script.js" defer></script>
 
 
     </head>
@@ -52,14 +59,16 @@
     <p>
         <input v-model="email"type="email" id="email" name="em" required="required" placeholder="E-mail address">
     </p>
-    <label for="Gatuadress">Gatuadress</label><br>
-    <p>
-        <input v-model="gatuadress" type="Address" id="gaddress" name="gaddress" required="required" placeholder="Gatuadress">
-    </p>
-    <label for="Husnummer">Husnummer</label><br>
-    <p>
-        <input v-model="nummer" type= Number id="nummer" name="nummer" required="required" placeholder="Husnummer">
-    </p>
+
+    <div class="view-box">
+      <div id="dots" v-on:click="displayOrder">
+          <div
+          v-if="details.x != -1 && details.y != -1"
+          v-bind:style="{ left: details.x + 'px', top: details.y + 'px'}">
+            <span>T</span>
+          </div>
+      </div>
+    </div>
 
     <h2> Beställ </h2>
     <p>
@@ -86,21 +95,20 @@
     <p>
         <input v-model = "gender" type="radio" value = "Hen"id="Hen" name="kön" >
     </p>
-  <button v-on:click.prevent ="order()" onclick="printOrder()" type="submit"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJSvQpy9PqvXsQAScztbIuj-qj94-WdIvyYfk_CUUbQAu-TUiPCg" width = "50" > Beställ </button>
+
+  <button v-on:click.prevent ="order" onclick="printOrder" type="submit"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJSvQpy9PqvXsQAScztbIuj-qj94-WdIvyYfk_CUUbQAu-TUiPCg" width = "50" > Beställ </button>
   <div id = "orderinfo">
   <div v-if = "clicked" id = "orderb">
   <h2> Orderbekräftelse (with vue)</h2>
   <h4> Burgare: {{burgers}} </h4>
    <p>Namn: {{namn}}</p>
    <p>Email:{{email}}</p>
-   <p>Gatuaddress: {{gatuadress}}</p>
-   <p>Nummer:{{nummer}}</p>
+   <p>Deliver to: {{details.x}} x / {{details.y}} y</p>
    <p>Betalmetod: {{betalmetod}}</p>
    <p>Kön: {{gender}}</p>
 </div>
 </div>
 <div id = "jsbekr">
-</div>
 </form>
 
   </section>
@@ -108,6 +116,7 @@
  </main>
 </section>
         </body>
+      </div>
 
         <footer id = "fot">
           <p> Låtsasburgare AB </p>

@@ -91,3 +91,6 @@ td {
     display: inline;
   }
 }
+.view-box {
+  padding-right: 1000px;
+}
